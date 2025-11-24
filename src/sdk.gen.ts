@@ -2,6 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
+import { getCandidateAssessmentsCandidateAssessmentIdReportsResponseTransformer, getCandidateAssessmentsCandidateAssessmentIdResponseTransformer, getCandidatesCandidateIdCandidateAssessmentsResponseTransformer, getCandidatesCandidateIdResponseTransformer, getCandidatesResponseTransformer, patchCandidatesCandidateIdResponseTransformer, postCandidateAssessmentsResponseTransformer, postCandidatesResponseTransformer } from './transformers.gen';
 import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdErrors, GetAssessmentsAssessmentIdResponses, GetAssessmentsData, GetAssessmentsErrors, GetAssessmentsResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsErrors, GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdData, GetCandidatesCandidateIdErrors, GetCandidatesCandidateIdResponses, GetCandidatesData, GetCandidatesErrors, GetCandidatesResponses, PatchAnswersAnswerIdData, PatchAnswersAnswerIdErrors, PatchAnswersAnswerIdResponses, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdErrors, PatchCandidatesCandidateIdResponses, PostAnswersData, PostAnswersErrors, PostAnswersResponses, PostCandidateAssessmentsData, PostCandidateAssessmentsErrors, PostCandidateAssessmentsResponses, PostCandidatesData, PostCandidatesErrors, PostCandidatesResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
@@ -76,6 +77,7 @@ export const getAssessmentsAssessmentId = <ThrowOnError extends boolean = false>
  * A paginated list of Candidates.
  */
 export const getCandidates = <ThrowOnError extends boolean = false>(options?: Options<GetCandidatesData, ThrowOnError>) => (options?.client ?? client).get<GetCandidatesResponses, GetCandidatesErrors, ThrowOnError>({
+    responseTransformer: getCandidatesResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates',
     ...options
@@ -87,6 +89,7 @@ export const getCandidates = <ThrowOnError extends boolean = false>(options?: Op
  * Create a new Candidate.
  */
 export const postCandidates = <ThrowOnError extends boolean = false>(options?: Options<PostCandidatesData, ThrowOnError>) => (options?.client ?? client).post<PostCandidatesResponses, PostCandidatesErrors, ThrowOnError>({
+    responseTransformer: postCandidatesResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates',
     ...options,
@@ -102,6 +105,7 @@ export const postCandidates = <ThrowOnError extends boolean = false>(options?: O
  * Retrieve information of a Candidate with the matching candidate ID.
  */
 export const getCandidatesCandidateId = <ThrowOnError extends boolean = false>(options: Options<GetCandidatesCandidateIdData, ThrowOnError>) => (options.client ?? client).get<GetCandidatesCandidateIdResponses, GetCandidatesCandidateIdErrors, ThrowOnError>({
+    responseTransformer: getCandidatesCandidateIdResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates/{candidateId}',
     ...options
@@ -113,6 +117,7 @@ export const getCandidatesCandidateId = <ThrowOnError extends boolean = false>(o
  * Update the information of an existing Candidate.
  */
 export const patchCandidatesCandidateId = <ThrowOnError extends boolean = false>(options: Options<PatchCandidatesCandidateIdData, ThrowOnError>) => (options.client ?? client).patch<PatchCandidatesCandidateIdResponses, PatchCandidatesCandidateIdErrors, ThrowOnError>({
+    responseTransformer: patchCandidatesCandidateIdResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates/{candidateId}',
     ...options,
@@ -128,6 +133,7 @@ export const patchCandidatesCandidateId = <ThrowOnError extends boolean = false>
  * A paginated list of CandidateAssessments for a specific Candidate.
  */
 export const getCandidatesCandidateIdCandidateAssessments = <ThrowOnError extends boolean = false>(options: Options<GetCandidatesCandidateIdCandidateAssessmentsData, ThrowOnError>) => (options.client ?? client).get<GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdCandidateAssessmentsErrors, ThrowOnError>({
+    responseTransformer: getCandidatesCandidateIdCandidateAssessmentsResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates/{candidateId}/candidate-assessments',
     ...options
@@ -139,6 +145,7 @@ export const getCandidatesCandidateIdCandidateAssessments = <ThrowOnError extend
  * Create a new CandidateAssessment.
  */
 export const postCandidateAssessments = <ThrowOnError extends boolean = false>(options?: Options<PostCandidateAssessmentsData, ThrowOnError>) => (options?.client ?? client).post<PostCandidateAssessmentsResponses, PostCandidateAssessmentsErrors, ThrowOnError>({
+    responseTransformer: postCandidateAssessmentsResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidate-assessments',
     ...options,
@@ -154,6 +161,7 @@ export const postCandidateAssessments = <ThrowOnError extends boolean = false>(o
  * Retrieve information of a CandidateAssessment with the matching CandidateAssessment ID.
  */
 export const getCandidateAssessmentsCandidateAssessmentId = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdResponses, GetCandidateAssessmentsCandidateAssessmentIdErrors, ThrowOnError>({
+    responseTransformer: getCandidateAssessmentsCandidateAssessmentIdResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidate-assessments/{candidateAssessmentId}',
     ...options
@@ -176,6 +184,7 @@ export const getCandidateAssessmentsCandidateAssessmentIdScoreSets = <ThrowOnErr
  * A paginated list of Reports available for a specific CandidateAssessment.
  */
 export const getCandidateAssessmentsCandidateAssessmentIdReports = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdReportsData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, ThrowOnError>({
+    responseTransformer: getCandidateAssessmentsCandidateAssessmentIdReportsResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidate-assessments/{candidateAssessmentId}/reports',
     ...options

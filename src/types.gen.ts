@@ -10,6 +10,9 @@ export type ClientOptions = {
  * Person who completes a CandidateAssessment.
  */
 export type Candidate = {
+    /**
+     * Unique identifier for the given candidate.
+     */
     id: ResourceId;
     type: 'candidates';
     attributes: {
@@ -23,16 +26,16 @@ export type Candidate = {
         /**
          * Timestamp for record creation.
          */
-        readonly created_at?: string;
+        readonly created_at?: Date;
         /**
          * Timestamp for last update.
          */
-        readonly updated_at?: string | null;
+        readonly updated_at?: Date | null;
         /**
          * A reference you can use to link with a candidate in another system.
          */
         external_reference?: string | null;
-        gdpr_approval_date?: string;
+        gdpr_approval_date?: Date;
     };
 };
 
@@ -67,7 +70,7 @@ export type AnswerFreeText = {
  */
 export type RelationshipCandidateAssessment = {
     data: {
-        type: 'candidate-assessments';
+        readonly type: 'candidate-assessments';
         id: ResourceId;
     };
 };
@@ -79,7 +82,7 @@ export type RelationshipCandidateAssessment = {
  */
 export type RelationshipQuestion = {
     data: {
-        type: 'questions';
+        readonly type: 'questions';
         id: ResourceId;
     };
 };
@@ -106,7 +109,7 @@ export type AnswerRelationshipAnswerOption = {
  */
 export type RelationshipAnswerOption = {
     data: {
-        type: 'answer-options';
+        readonly type: 'answer-options';
         id: ResourceId;
     };
 };
@@ -183,10 +186,10 @@ export type CandidateAssessment = {
     type: 'candidate-assessments';
     attributes: {
         readonly url: string;
-        readonly created_at?: string;
-        readonly updated_at?: string | null;
-        readonly started_at?: string | null;
-        readonly completed_at?: string | null;
+        readonly created_at?: Date;
+        readonly updated_at?: Date | null;
+        readonly started_at?: Date | null;
+        readonly completed_at?: Date | null;
     };
     relationships?: {
         candidate?: RelationshipCandidate;
@@ -204,7 +207,7 @@ export type CandidateAssessment = {
  */
 export type RelationshipCandidate = {
     data: {
-        type: 'candidates';
+        readonly type: 'candidates';
         id: ResourceId;
     };
 };
@@ -216,7 +219,7 @@ export type RelationshipCandidate = {
  */
 export type RelationshipAssessment = {
     data: {
-        type: 'assessments';
+        readonly type: 'assessments';
         id: ResourceId;
     };
 };
@@ -228,7 +231,7 @@ export type RelationshipAssessment = {
  */
 export type ScoreSet = {
     id: ResourceId;
-    type: 'score-sets';
+    readonly type: 'score-sets';
     attributes: {
         readonly behavioural_scores?: Array<{
             readonly name: string;
@@ -252,8 +255,8 @@ export type Report = {
     attributes: {
         readonly title: string;
         readonly description?: string;
-        readonly created_at?: string;
-        readonly updated_at?: string | null;
+        readonly created_at?: Date;
+        readonly updated_at?: Date | null;
     };
 };
 
@@ -382,7 +385,7 @@ export type CandidateWritable = {
          * A reference you can use to link with a candidate in another system.
          */
         external_reference?: string | null;
-        gdpr_approval_date?: string;
+        gdpr_approval_date?: Date;
     };
 };
 
