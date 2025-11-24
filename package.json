@@ -1,0 +1,11 @@
+{
+  "name": "itesthub-client-ts",
+  "type": "module",
+  "scripts": {
+    "build": "openapi-ts",
+    "test": ""
+  },
+  "dependencies": {
+    "@hey-api/openapi-ts": "^0.88.0"
+  }
+}
