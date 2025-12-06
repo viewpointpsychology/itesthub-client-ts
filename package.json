@@ -1,6 +1,6 @@
 {
   "name": "itesthub-client-ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typescript client for the iTestHub API",
   "type": "module",
   "repository": {
