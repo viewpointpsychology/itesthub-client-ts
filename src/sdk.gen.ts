@@ -3,7 +3,7 @@
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
 import { getCandidateAssessmentsCandidateAssessmentIdReportsResponseTransformer, getCandidateAssessmentsCandidateAssessmentIdResponseTransformer, getCandidatesCandidateIdCandidateAssessmentsResponseTransformer, getCandidatesCandidateIdResponseTransformer, getCandidatesResponseTransformer, patchCandidatesCandidateIdResponseTransformer, postCandidateAssessmentsResponseTransformer, postCandidatesResponseTransformer } from './transformers.gen';
-import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdErrors, GetAssessmentsAssessmentIdResponses, GetAssessmentsData, GetAssessmentsErrors, GetAssessmentsResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsErrors, GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdData, GetCandidatesCandidateIdErrors, GetCandidatesCandidateIdResponses, GetCandidatesData, GetCandidatesErrors, GetCandidatesResponses, PatchAnswersAnswerIdData, PatchAnswersAnswerIdErrors, PatchAnswersAnswerIdResponses, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdErrors, PatchCandidatesCandidateIdResponses, PostAnswersData, PostAnswersErrors, PostAnswersResponses, PostCandidateAssessmentsData, PostCandidateAssessmentsErrors, PostCandidateAssessmentsResponses, PostCandidatesData, PostCandidatesErrors, PostCandidatesResponses } from './types.gen';
+import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdErrors, GetAssessmentsAssessmentIdResponses, GetAssessmentsData, GetAssessmentsErrors, GetAssessmentsResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsErrors, GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdData, GetCandidatesCandidateIdErrors, GetCandidatesCandidateIdResponses, GetCandidatesData, GetCandidatesErrors, GetCandidatesResponses, PatchAnswersAnswerIdData, PatchAnswersAnswerIdErrors, PatchAnswersAnswerIdResponses, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdErrors, PatchCandidatesCandidateIdResponses, PostAnswersData, PostAnswersErrors, PostAnswersResponses, PostCandidateAssessmentsCandidateAssessmentIdActionsData, PostCandidateAssessmentsCandidateAssessmentIdActionsErrors, PostCandidateAssessmentsCandidateAssessmentIdActionsResponses, PostCandidateAssessmentsData, PostCandidateAssessmentsErrors, PostCandidateAssessmentsResponses, PostCandidatesData, PostCandidatesErrors, PostCandidatesResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -165,6 +165,21 @@ export const getCandidateAssessmentsCandidateAssessmentId = <ThrowOnError extend
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidate-assessments/{candidateAssessmentId}',
     ...options
+});
+
+/**
+ * Create new CandidateAssessment Action
+ *
+ * Create a new Actions resource for a CandidateAssessment.
+ */
+export const postCandidateAssessmentsCandidateAssessmentIdActions = <ThrowOnError extends boolean = false>(options: Options<PostCandidateAssessmentsCandidateAssessmentIdActionsData, ThrowOnError>) => (options.client ?? client).post<PostCandidateAssessmentsCandidateAssessmentIdActionsResponses, PostCandidateAssessmentsCandidateAssessmentIdActionsErrors, ThrowOnError>({
+    security: [{ name: 'X-API-Key', type: 'apiKey' }],
+    url: '/candidate-assessments/{candidateAssessmentId}/actions',
+    ...options,
+    headers: {
+        'Content-Type': 'application/vnd.api+json',
+        ...options.headers
+    }
 });
 
 /**

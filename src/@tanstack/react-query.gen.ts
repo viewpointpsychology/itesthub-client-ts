@@ -3,8 +3,8 @@
 import { type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { getAssessments, getAssessmentsAssessmentId, getCandidateAssessmentsCandidateAssessmentId, getCandidateAssessmentsCandidateAssessmentIdAnswers, getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId, getCandidateAssessmentsCandidateAssessmentIdReports, getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportId, getCandidateAssessmentsCandidateAssessmentIdScoreSets, getCandidates, getCandidatesCandidateId, getCandidatesCandidateIdCandidateAssessments, type Options, patchAnswersAnswerId, patchCandidatesCandidateId, postAnswers, postCandidateAssessments, postCandidates } from '../sdk.gen';
-import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdError, GetAssessmentsAssessmentIdResponse, GetAssessmentsData, GetAssessmentsError, GetAssessmentsResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdError, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsError, GetCandidateAssessmentsCandidateAssessmentIdReportsResponse, GetCandidateAssessmentsCandidateAssessmentIdResponse, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsError, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsError, GetCandidatesCandidateIdCandidateAssessmentsResponse, GetCandidatesCandidateIdData, GetCandidatesCandidateIdError, GetCandidatesCandidateIdResponse, GetCandidatesData, GetCandidatesError, GetCandidatesResponse, PatchAnswersAnswerIdData, PatchAnswersAnswerIdError, PatchAnswersAnswerIdResponse, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdError, PatchCandidatesCandidateIdResponse, PostAnswersData, PostAnswersError, PostAnswersResponse, PostCandidateAssessmentsData, PostCandidateAssessmentsError, PostCandidateAssessmentsResponse, PostCandidatesData, PostCandidatesError, PostCandidatesResponse } from '../types.gen';
+import { getAssessments, getAssessmentsAssessmentId, getCandidateAssessmentsCandidateAssessmentId, getCandidateAssessmentsCandidateAssessmentIdAnswers, getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId, getCandidateAssessmentsCandidateAssessmentIdReports, getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportId, getCandidateAssessmentsCandidateAssessmentIdScoreSets, getCandidates, getCandidatesCandidateId, getCandidatesCandidateIdCandidateAssessments, type Options, patchAnswersAnswerId, patchCandidatesCandidateId, postAnswers, postCandidateAssessments, postCandidateAssessmentsCandidateAssessmentIdActions, postCandidates } from '../sdk.gen';
+import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdError, GetAssessmentsAssessmentIdResponse, GetAssessmentsData, GetAssessmentsError, GetAssessmentsResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdError, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsError, GetCandidateAssessmentsCandidateAssessmentIdReportsResponse, GetCandidateAssessmentsCandidateAssessmentIdResponse, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsError, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsError, GetCandidatesCandidateIdCandidateAssessmentsResponse, GetCandidatesCandidateIdData, GetCandidatesCandidateIdError, GetCandidatesCandidateIdResponse, GetCandidatesData, GetCandidatesError, GetCandidatesResponse, PatchAnswersAnswerIdData, PatchAnswersAnswerIdError, PatchAnswersAnswerIdResponse, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdError, PatchCandidatesCandidateIdResponse, PostAnswersData, PostAnswersError, PostAnswersResponse, PostCandidateAssessmentsCandidateAssessmentIdActionsData, PostCandidateAssessmentsCandidateAssessmentIdActionsError, PostCandidateAssessmentsData, PostCandidateAssessmentsError, PostCandidateAssessmentsResponse, PostCandidatesData, PostCandidatesError, PostCandidatesResponse } from '../types.gen';
 
 /**
  * Submit an Answer
@@ -369,6 +369,25 @@ export const getCandidateAssessmentsCandidateAssessmentIdOptions = (options: Opt
     },
     queryKey: getCandidateAssessmentsCandidateAssessmentIdQueryKey(options)
 });
+
+/**
+ * Create new CandidateAssessment Action
+ *
+ * Create a new Actions resource for a CandidateAssessment.
+ */
+export const postCandidateAssessmentsCandidateAssessmentIdActionsMutation = (options?: Partial<Options<PostCandidateAssessmentsCandidateAssessmentIdActionsData>>): UseMutationOptions<unknown, PostCandidateAssessmentsCandidateAssessmentIdActionsError, Options<PostCandidateAssessmentsCandidateAssessmentIdActionsData>> => {
+    const mutationOptions: UseMutationOptions<unknown, PostCandidateAssessmentsCandidateAssessmentIdActionsError, Options<PostCandidateAssessmentsCandidateAssessmentIdActionsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await postCandidateAssessmentsCandidateAssessmentIdActions({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
 
 export const getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdScoreSets', options, false, ['CandidateAssessment']);
 
