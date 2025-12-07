@@ -120,7 +120,7 @@ export type Candidate = {
  * An Action resource for a CandidateAssessment.
  */
 export type CandidateAssessmentAction = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'candidate-assessment-actions';
     attributes: {
         action: 'start' | 'finish';
@@ -128,7 +128,7 @@ export type CandidateAssessmentAction = {
     relationships: {
         'candidate-assessment': {
             data: {
-                readonly type: 'candidate-assessments';
+                type: 'candidate-assessments';
                 id: ResourceId;
             };
         };
@@ -412,6 +412,7 @@ export type AnswerOption = {
  * A free-text Answer supplied by a Candidate
  */
 export type AnswerFreeTextWritable = {
+    id: ResourceId;
     type: 'answers';
     attributes: {
         answer?: string;
@@ -428,7 +429,9 @@ export type AnswerFreeTextWritable = {
  * CandidateAssessment relationship object
  */
 export type RelationshipCandidateAssessmentWritable = {
-    [key: string]: unknown;
+    data: {
+        id: ResourceId;
+    };
 };
 
 /**
@@ -437,7 +440,9 @@ export type RelationshipCandidateAssessmentWritable = {
  * Question relationship object
  */
 export type RelationshipQuestionWritable = {
-    [key: string]: unknown;
+    data: {
+        id: ResourceId;
+    };
 };
 
 /**
@@ -446,6 +451,7 @@ export type RelationshipQuestionWritable = {
  * An AnswerOption selected by a Candidate
  */
 export type AnswerRelationshipAnswerOptionWritable = {
+    id: ResourceId;
     type: 'answers';
     relationships: {
         candidate_assessment: RelationshipCandidateAssessmentWritable;
@@ -460,7 +466,9 @@ export type AnswerRelationshipAnswerOptionWritable = {
  * AnswerOption relationship object
  */
 export type RelationshipAnswerOptionWritable = {
-    [key: string]: unknown;
+    data: {
+        id: ResourceId;
+    };
 };
 
 /**
@@ -469,6 +477,10 @@ export type RelationshipAnswerOptionWritable = {
  * Person who completes a CandidateAssessment.
  */
 export type CandidateWritable = {
+    /**
+     * Unique identifier for the given candidate.
+     */
+    id: ResourceId;
     type: 'candidates';
     attributes: {
         first_name: string;
@@ -487,23 +499,12 @@ export type CandidateWritable = {
 };
 
 /**
- * CandidateAssessmentAction
- *
- * An Action resource for a CandidateAssessment.
- */
-export type CandidateAssessmentActionWritable = {
-    type: 'candidate-assessment-actions';
-    attributes: {
-        action: 'start' | 'finish';
-    };
-};
-
-/**
  * Assessment
  *
  * Test template from which a CandidateAssessment is created.
  */
 export type AssessmentWritable = {
+    id: ResourceId;
     type: 'assessments';
     attributes: {
         language?: Language;
@@ -517,6 +518,7 @@ export type AssessmentWritable = {
  * An Assessment assigned to a Candidate.
  */
 export type CandidateAssessmentWritable = {
+    id: ResourceId;
     type: 'candidate-assessments';
     relationships?: {
         candidate?: RelationshipCandidateWritable;
@@ -530,7 +532,9 @@ export type CandidateAssessmentWritable = {
  * Candidate relationship object
  */
 export type RelationshipCandidateWritable = {
-    [key: string]: unknown;
+    data: {
+        id: ResourceId;
+    };
 };
 
 /**
@@ -539,7 +543,9 @@ export type RelationshipCandidateWritable = {
  * Assessment relationship object
  */
 export type RelationshipAssessmentWritable = {
-    [key: string]: unknown;
+    data: {
+        id: ResourceId;
+    };
 };
 
 /**
@@ -548,6 +554,7 @@ export type RelationshipAssessmentWritable = {
  * A set of scores for a CandidateAssessment.
  */
 export type ScoreSetWritable = {
+    id: ResourceId;
     relationships?: {
         candidate_assessments?: RelationshipCandidateAssessmentWritable;
     };
@@ -559,6 +566,7 @@ export type ScoreSetWritable = {
  * Easy-to-read results of an Assessment.
  */
 export type ReportWritable = {
+    id: ResourceId;
     type: 'reports';
 };
 
@@ -568,6 +576,7 @@ export type ReportWritable = {
  * An item on an Assessment that offers one or more AnswerOptions
  */
 export type QuestionWritable = {
+    id: ResourceId;
     type: 'questions';
     attributes: QuestionAttributesBasicWritable | QuestionAttributesNumberPathWritable | QuestionAttributesColourPathWritable;
 };
@@ -612,6 +621,7 @@ export type QuestionAttributesColourPathWritable = QuestionAttributesCoreWritabl
  * A possible answer/response to a Question
  */
 export type AnswerOptionWritable = {
+    id: ResourceId;
     type: 'answer-options';
     relationships?: {
         question?: RelationshipQuestionWritable;
@@ -709,7 +719,7 @@ export type CandidateAssessmentUpdate = {
 };
 
 export type CandidateAssessmentActionCreate = {
-    data: CandidateAssessmentActionWritable;
+    data: CandidateAssessmentAction;
 };
 
 export type PostAnswersData = {

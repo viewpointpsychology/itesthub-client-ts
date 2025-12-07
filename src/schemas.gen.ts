@@ -53,8 +53,7 @@ export const resourceIdSchema = {
     description: 'Resource ID.',
     format: 'uuid',
     pattern: '^[A-Za-z0-9_]+',
-    maxLength: 36,
-    readOnly: true
+    maxLength: 36
 } as const;
 
 export const relationshipCandidateAssessmentSchema = {
@@ -315,7 +314,6 @@ export const CandidateAssessmentActionSchema = {
                             properties: {
                                 type: {
                                     const: 'candidate-assessments',
-                                    readOnly: true,
                                     default: 'candidate-assessments'
                                 },
                                 id: {
@@ -339,7 +337,6 @@ export const CandidateAssessmentActionSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes',
         'relationships'
@@ -1259,6 +1256,9 @@ export const AnswerFreeTextWritableSchema = {
     title: 'AnswerFreeText',
     description: 'A free-text Answer supplied by a Candidate',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'answers',
             default: 'answers'
@@ -1291,6 +1291,7 @@ export const AnswerFreeTextWritableSchema = {
         }
     },
     required: [
+        'id',
         'type',
         'attributes',
         'relationships'
@@ -1300,13 +1301,45 @@ export const AnswerFreeTextWritableSchema = {
 export const relationshipCandidateAssessmentWritableSchema = {
     type: 'object',
     title: 'relationshipCandidateAssessment',
-    description: 'CandidateAssessment relationship object'
+    description: 'CandidateAssessment relationship object',
+    properties: {
+        data: {
+            type: 'object',
+            properties: {
+                id: {
+                    $ref: '#/components/schemas/resourceId'
+                }
+            },
+            required: [
+                'id'
+            ]
+        }
+    },
+    required: [
+        'data'
+    ]
 } as const;
 
 export const relationshipQuestionWritableSchema = {
     type: 'object',
     title: 'relationshipQuestion',
-    description: 'Question relationship object'
+    description: 'Question relationship object',
+    properties: {
+        data: {
+            type: 'object',
+            properties: {
+                id: {
+                    $ref: '#/components/schemas/resourceId'
+                }
+            },
+            required: [
+                'id'
+            ]
+        }
+    },
+    required: [
+        'data'
+    ]
 } as const;
 
 export const AnswerRelationshipAnswerOptionWritableSchema = {
@@ -1314,6 +1347,9 @@ export const AnswerRelationshipAnswerOptionWritableSchema = {
     title: 'AnswerRelationshipAnswerOption',
     description: 'An AnswerOption selected by a Candidate',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'answers',
             default: 'answers'
@@ -1339,6 +1375,7 @@ export const AnswerRelationshipAnswerOptionWritableSchema = {
         }
     },
     required: [
+        'id',
         'type',
         'relationships'
     ]
@@ -1347,7 +1384,23 @@ export const AnswerRelationshipAnswerOptionWritableSchema = {
 export const relationshipAnswerOptionWritableSchema = {
     type: 'object',
     title: 'relationshipAnswerOption',
-    description: 'AnswerOption relationship object'
+    description: 'AnswerOption relationship object',
+    properties: {
+        data: {
+            type: 'object',
+            properties: {
+                id: {
+                    $ref: '#/components/schemas/resourceId'
+                }
+            },
+            required: [
+                'id'
+            ]
+        }
+    },
+    required: [
+        'data'
+    ]
 } as const;
 
 export const CandidateWritableSchema = {
@@ -1355,6 +1408,10 @@ export const CandidateWritableSchema = {
     title: 'Candidate',
     description: 'Person who completes a CandidateAssessment.',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId',
+            description: 'Unique identifier for the given candidate.'
+        },
         type: {
             const: 'candidates',
             default: 'candidates'
@@ -1407,6 +1464,7 @@ export const CandidateWritableSchema = {
         }
     },
     required: [
+        'id',
         'type',
         'attributes'
     ],
@@ -1424,43 +1482,14 @@ export const CandidateWritableSchema = {
     ]
 } as const;
 
-export const CandidateAssessmentActionWritableSchema = {
-    type: 'object',
-    title: 'CandidateAssessmentAction',
-    description: 'An Action resource for a CandidateAssessment.',
-    properties: {
-        type: {
-            const: 'candidate-assessment-actions',
-            default: 'candidate-assessment-actions'
-        },
-        attributes: {
-            type: 'object',
-            properties: {
-                action: {
-                    type: 'string',
-                    enum: [
-                        'start',
-                        'finish'
-                    ],
-                    default: 'start'
-                }
-            },
-            required: [
-                'action'
-            ]
-        }
-    },
-    required: [
-        'type',
-        'attributes'
-    ]
-} as const;
-
 export const AssessmentWritableSchema = {
     type: 'object',
     title: 'Assessment',
     description: 'Test template from which a CandidateAssessment is created.',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'assessments',
             default: 'assessments'
@@ -1483,6 +1512,7 @@ export const AssessmentWritableSchema = {
         }
     },
     required: [
+        'id',
         'type',
         'attributes'
     ]
@@ -1493,6 +1523,9 @@ export const CandidateAssessmentWritableSchema = {
     title: 'CandidateAssessment',
     description: 'An Assessment assigned to a Candidate.',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'candidate-assessments',
             default: 'candidate-assessments'
@@ -1510,6 +1543,7 @@ export const CandidateAssessmentWritableSchema = {
         }
     },
     required: [
+        'id',
         'type'
     ]
 } as const;
@@ -1517,13 +1551,45 @@ export const CandidateAssessmentWritableSchema = {
 export const relationshipCandidateWritableSchema = {
     type: 'object',
     title: 'relationshipCandidate',
-    description: 'Candidate relationship object'
+    description: 'Candidate relationship object',
+    properties: {
+        data: {
+            type: 'object',
+            properties: {
+                id: {
+                    $ref: '#/components/schemas/resourceId'
+                }
+            },
+            required: [
+                'id'
+            ]
+        }
+    },
+    required: [
+        'data'
+    ]
 } as const;
 
 export const relationshipAssessmentWritableSchema = {
     type: 'object',
     title: 'relationshipAssessment',
-    description: 'Assessment relationship object'
+    description: 'Assessment relationship object',
+    properties: {
+        data: {
+            type: 'object',
+            properties: {
+                id: {
+                    $ref: '#/components/schemas/resourceId'
+                }
+            },
+            required: [
+                'id'
+            ]
+        }
+    },
+    required: [
+        'data'
+    ]
 } as const;
 
 export const ScoreSetWritableSchema = {
@@ -1531,6 +1597,9 @@ export const ScoreSetWritableSchema = {
     title: 'ScoreSet',
     description: 'A set of scores for a CandidateAssessment.',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         relationships: {
             type: 'object',
             properties: {
@@ -1539,7 +1608,10 @@ export const ScoreSetWritableSchema = {
                 }
             }
         }
-    }
+    },
+    required: [
+        'id'
+    ]
 } as const;
 
 export const ReportWritableSchema = {
@@ -1547,12 +1619,16 @@ export const ReportWritableSchema = {
     title: 'Report',
     description: 'Easy-to-read results of an Assessment.',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'reports',
             default: 'reports'
         }
     },
     required: [
+        'id',
         'type'
     ]
 } as const;
@@ -1562,6 +1638,9 @@ export const QuestionWritableSchema = {
     title: 'Question',
     description: 'An item on an Assessment that offers one or more AnswerOptions',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'questions',
             default: 'questions'
@@ -1581,6 +1660,7 @@ export const QuestionWritableSchema = {
         }
     },
     required: [
+        'id',
         'type',
         'attributes'
     ]
@@ -1750,6 +1830,9 @@ export const AnswerOptionWritableSchema = {
     title: 'AnswerOption',
     description: 'A possible answer/response to a Question',
     properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
         type: {
             const: 'answer-options',
             default: 'answer-options'
@@ -1764,6 +1847,7 @@ export const AnswerOptionWritableSchema = {
         }
     },
     required: [
+        'id',
         'type'
     ]
 } as const;
