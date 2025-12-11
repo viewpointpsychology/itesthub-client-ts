@@ -3,8 +3,8 @@
 import { type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { getAssessments, getAssessmentsAssessmentId, getCandidateAssessmentsCandidateAssessmentId, getCandidateAssessmentsCandidateAssessmentIdAnswers, getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId, getCandidateAssessmentsCandidateAssessmentIdReports, getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportId, getCandidateAssessmentsCandidateAssessmentIdScoreSets, getCandidates, getCandidatesCandidateId, getCandidatesCandidateIdCandidateAssessments, type Options, patchAnswersAnswerId, patchCandidatesCandidateId, postAnswers, postCandidateAssessments, postCandidateAssessmentsCandidateAssessmentIdActions, postCandidates } from '../sdk.gen';
-import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdError, GetAssessmentsAssessmentIdResponse, GetAssessmentsData, GetAssessmentsError, GetAssessmentsResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdError, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsError, GetCandidateAssessmentsCandidateAssessmentIdReportsResponse, GetCandidateAssessmentsCandidateAssessmentIdResponse, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsError, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsError, GetCandidatesCandidateIdCandidateAssessmentsResponse, GetCandidatesCandidateIdData, GetCandidatesCandidateIdError, GetCandidatesCandidateIdResponse, GetCandidatesData, GetCandidatesError, GetCandidatesResponse, PatchAnswersAnswerIdData, PatchAnswersAnswerIdError, PatchAnswersAnswerIdResponse, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdError, PatchCandidatesCandidateIdResponse, PostAnswersData, PostAnswersError, PostAnswersResponse, PostCandidateAssessmentsCandidateAssessmentIdActionsData, PostCandidateAssessmentsCandidateAssessmentIdActionsError, PostCandidateAssessmentsData, PostCandidateAssessmentsError, PostCandidateAssessmentsResponse, PostCandidatesData, PostCandidatesError, PostCandidatesResponse } from '../types.gen';
+import { getAssessments, getAssessmentsAssessmentId, getCandidateAssessmentsCandidateAssessmentId, getCandidateAssessmentsCandidateAssessmentIdAnswers, getCandidateAssessmentsCandidateAssessmentIdQuestions, getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId, getCandidateAssessmentsCandidateAssessmentIdReports, getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportId, getCandidateAssessmentsCandidateAssessmentIdScoreSets, getCandidates, getCandidatesCandidateId, getCandidatesCandidateIdCandidateAssessments, type Options, patchAnswersAnswerId, patchCandidatesCandidateId, postAnswers, postCandidateAssessments, postCandidateAssessmentsCandidateAssessmentIdActions, postCandidates } from '../sdk.gen';
+import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdError, GetAssessmentsAssessmentIdResponse, GetAssessmentsData, GetAssessmentsError, GetAssessmentsResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdError, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponse, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsError, GetCandidateAssessmentsCandidateAssessmentIdReportsResponse, GetCandidateAssessmentsCandidateAssessmentIdResponse, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsError, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsError, GetCandidatesCandidateIdCandidateAssessmentsResponse, GetCandidatesCandidateIdData, GetCandidatesCandidateIdError, GetCandidatesCandidateIdResponse, GetCandidatesData, GetCandidatesError, GetCandidatesResponse, PatchAnswersAnswerIdData, PatchAnswersAnswerIdError, PatchAnswersAnswerIdResponse, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdError, PatchCandidatesCandidateIdResponse, PostAnswersData, PostAnswersError, PostAnswersResponse, PostCandidateAssessmentsCandidateAssessmentIdActionsData, PostCandidateAssessmentsCandidateAssessmentIdActionsError, PostCandidateAssessmentsData, PostCandidateAssessmentsError, PostCandidateAssessmentsResponse, PostCandidatesData, PostCandidatesError, PostCandidatesResponse } from '../types.gen';
 
 /**
  * Submit an Answer
@@ -389,16 +389,16 @@ export const postCandidateAssessmentsCandidateAssessmentIdActionsMutation = (opt
     return mutationOptions;
 };
 
-export const getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdScoreSets', options, false, ['CandidateAssessment']);
+export const getCandidateAssessmentsCandidateAssessmentIdAnswersQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdAnswers', options, false, ['CandidateAssessment']);
 
 /**
- * Details of CandidateAssessment Scores.
+ * List Answer responses for a CandidateAssessment
  *
- * A ScoreSet for a specific CandidateAssessment.
+ * List of Answer responses to this CandidateAssessment
  */
-export const getCandidateAssessmentsCandidateAssessmentIdScoreSetsOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsError, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey>>({
+export const getCandidateAssessmentsCandidateAssessmentIdAnswersOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdAnswersQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getCandidateAssessmentsCandidateAssessmentIdScoreSets({
+        const { data } = await getCandidateAssessmentsCandidateAssessmentIdAnswers({
             ...options,
             ...queryKey[0],
             signal,
@@ -406,7 +406,105 @@ export const getCandidateAssessmentsCandidateAssessmentIdScoreSetsOptions = (opt
         });
         return data;
     },
-    queryKey: getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey(options)
+    queryKey: getCandidateAssessmentsCandidateAssessmentIdAnswersQueryKey(options)
+});
+
+export const getCandidateAssessmentsCandidateAssessmentIdAnswersInfiniteQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>): QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>> => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdAnswers', options, true);
+
+/**
+ * List Answer responses for a CandidateAssessment
+ *
+ * List of Answer responses to this CandidateAssessment
+ */
+export const getCandidateAssessmentsCandidateAssessmentIdAnswersInfiniteOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>) => infiniteQueryOptions<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, InfiniteData<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse>, QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>>, Array<unknown> | Pick<QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getCandidateAssessmentsCandidateAssessmentIdAnswers({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCandidateAssessmentsCandidateAssessmentIdAnswersInfiniteQueryKey(options)
+});
+
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdQuestions', options, false, ['CandidateAssessment']);
+
+/**
+ * List of Questions for a CandidateAssessment
+ *
+ * List of Questions in this CandidateAssessment. Each paginated group is a set of Questions grouped according to the rules for this CandidateAssessment.
+ */
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponse, GetCandidateAssessmentsCandidateAssessmentIdQuestionsError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdQuestionsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCandidateAssessmentsCandidateAssessmentIdQuestions({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCandidateAssessmentsCandidateAssessmentIdQuestionsQueryKey(options)
+});
+
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsInfiniteQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>): QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>> => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdQuestions', options, true);
+
+/**
+ * List of Questions for a CandidateAssessment
+ *
+ * List of Questions in this CandidateAssessment. Each paginated group is a set of Questions grouped according to the rules for this CandidateAssessment.
+ */
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsInfiniteOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>) => infiniteQueryOptions<GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponse, GetCandidateAssessmentsCandidateAssessmentIdQuestionsError, InfiniteData<GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponse>, QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>>, Array<unknown> | Pick<QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                page: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getCandidateAssessmentsCandidateAssessmentIdQuestions({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCandidateAssessmentsCandidateAssessmentIdQuestionsInfiniteQueryKey(options)
+});
+
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId', options, false, ['CandidateAssessment']);
+
+/**
+ * Retrieve Question details for a CandidateAssessment
+ *
+ * Details of a Question in this CandidateAssessment
+ */
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdQueryKey(options)
 });
 
 export const getCandidateAssessmentsCandidateAssessmentIdReportsQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdReportsData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdReports', options, false, ['CandidateAssessment']);
@@ -478,16 +576,16 @@ export const getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportI
     queryKey: getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdQueryKey(options)
 });
 
-export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId', options, false, ['CandidateAssessment']);
+export const getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdScoreSets', options, false, ['CandidateAssessment']);
 
 /**
- * Retrieve Question details for a CandidateAssessment
+ * Details of CandidateAssessment Scores.
  *
- * Details of a Question in this CandidateAssessment
+ * A ScoreSet for a specific CandidateAssessment.
  */
-export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdQueryKey>>({
+export const getCandidateAssessmentsCandidateAssessmentIdScoreSetsOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsError, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey>>({
     queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId({
+        const { data } = await getCandidateAssessmentsCandidateAssessmentIdScoreSets({
             ...options,
             ...queryKey[0],
             signal,
@@ -495,54 +593,5 @@ export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdOpti
         });
         return data;
     },
-    queryKey: getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdQueryKey(options)
-});
-
-export const getCandidateAssessmentsCandidateAssessmentIdAnswersQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>) => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdAnswers', options, false, ['CandidateAssessment']);
-
-/**
- * List Answer responses for a CandidateAssessment
- *
- * List of Answer responses to this CandidateAssessment
- */
-export const getCandidateAssessmentsCandidateAssessmentIdAnswersOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>) => queryOptions<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, ReturnType<typeof getCandidateAssessmentsCandidateAssessmentIdAnswersQueryKey>>({
-    queryFn: async ({ queryKey, signal }) => {
-        const { data } = await getCandidateAssessmentsCandidateAssessmentIdAnswers({
-            ...options,
-            ...queryKey[0],
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getCandidateAssessmentsCandidateAssessmentIdAnswersQueryKey(options)
-});
-
-export const getCandidateAssessmentsCandidateAssessmentIdAnswersInfiniteQueryKey = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>): QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>> => createQueryKey('getCandidateAssessmentsCandidateAssessmentIdAnswers', options, true);
-
-/**
- * List Answer responses for a CandidateAssessment
- *
- * List of Answer responses to this CandidateAssessment
- */
-export const getCandidateAssessmentsCandidateAssessmentIdAnswersInfiniteOptions = (options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>) => infiniteQueryOptions<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse, GetCandidateAssessmentsCandidateAssessmentIdAnswersError, InfiniteData<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponse>, QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>>, Array<unknown> | Pick<QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
-// @ts-ignore
-{
-    queryFn: async ({ pageParam, queryKey, signal }) => {
-        // @ts-ignore
-        const page: Pick<QueryKey<Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
-            query: {
-                page: pageParam
-            }
-        };
-        const params = createInfiniteParams(queryKey, page);
-        const { data } = await getCandidateAssessmentsCandidateAssessmentIdAnswers({
-            ...options,
-            ...params,
-            signal,
-            throwOnError: true
-        });
-        return data;
-    },
-    queryKey: getCandidateAssessmentsCandidateAssessmentIdAnswersInfiniteQueryKey(options)
+    queryKey: getCandidateAssessmentsCandidateAssessmentIdScoreSetsQueryKey(options)
 });

@@ -3,7 +3,7 @@
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
 import { getCandidateAssessmentsCandidateAssessmentIdReportsResponseTransformer, getCandidateAssessmentsCandidateAssessmentIdResponseTransformer, getCandidatesCandidateIdCandidateAssessmentsResponseTransformer, getCandidatesCandidateIdResponseTransformer, getCandidatesResponseTransformer, patchCandidatesCandidateIdResponseTransformer, postCandidateAssessmentsResponseTransformer, postCandidatesResponseTransformer } from './transformers.gen';
-import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdErrors, GetAssessmentsAssessmentIdResponses, GetAssessmentsData, GetAssessmentsErrors, GetAssessmentsResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsErrors, GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdData, GetCandidatesCandidateIdErrors, GetCandidatesCandidateIdResponses, GetCandidatesData, GetCandidatesErrors, GetCandidatesResponses, PatchAnswersAnswerIdData, PatchAnswersAnswerIdErrors, PatchAnswersAnswerIdResponses, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdErrors, PatchCandidatesCandidateIdResponses, PostAnswersData, PostAnswersErrors, PostAnswersResponses, PostCandidateAssessmentsCandidateAssessmentIdActionsData, PostCandidateAssessmentsCandidateAssessmentIdActionsErrors, PostCandidateAssessmentsCandidateAssessmentIdActionsResponses, PostCandidateAssessmentsData, PostCandidateAssessmentsErrors, PostCandidateAssessmentsResponses, PostCandidatesData, PostCandidatesErrors, PostCandidatesResponses } from './types.gen';
+import type { GetAssessmentsAssessmentIdData, GetAssessmentsAssessmentIdErrors, GetAssessmentsAssessmentIdResponses, GetAssessmentsData, GetAssessmentsErrors, GetAssessmentsResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersData, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdData, GetCandidateAssessmentsCandidateAssessmentIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdData, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportIdResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsData, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidatesCandidateIdCandidateAssessmentsData, GetCandidatesCandidateIdCandidateAssessmentsErrors, GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdData, GetCandidatesCandidateIdErrors, GetCandidatesCandidateIdResponses, GetCandidatesData, GetCandidatesErrors, GetCandidatesResponses, PatchAnswersAnswerIdData, PatchAnswersAnswerIdErrors, PatchAnswersAnswerIdResponses, PatchCandidatesCandidateIdData, PatchCandidatesCandidateIdErrors, PatchCandidatesCandidateIdResponses, PostAnswersData, PostAnswersErrors, PostAnswersResponses, PostCandidateAssessmentsCandidateAssessmentIdActionsData, PostCandidateAssessmentsCandidateAssessmentIdActionsErrors, PostCandidateAssessmentsCandidateAssessmentIdActionsResponses, PostCandidateAssessmentsData, PostCandidateAssessmentsErrors, PostCandidateAssessmentsResponses, PostCandidatesData, PostCandidatesErrors, PostCandidatesResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -55,6 +55,7 @@ export const patchAnswersAnswerId = <ThrowOnError extends boolean = false>(optio
  * A paginated list of available Assessments.
  */
 export const getAssessments = <ThrowOnError extends boolean = false>(options?: Options<GetAssessmentsData, ThrowOnError>) => (options?.client ?? client).get<GetAssessmentsResponses, GetAssessmentsErrors, ThrowOnError>({
+    querySerializer: { parameters: { page: { array: { explode: false } } } },
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/assessments',
     ...options
@@ -77,6 +78,7 @@ export const getAssessmentsAssessmentId = <ThrowOnError extends boolean = false>
  * A paginated list of Candidates.
  */
 export const getCandidates = <ThrowOnError extends boolean = false>(options?: Options<GetCandidatesData, ThrowOnError>) => (options?.client ?? client).get<GetCandidatesResponses, GetCandidatesErrors, ThrowOnError>({
+    querySerializer: { parameters: { page: { array: { explode: false } } } },
     responseTransformer: getCandidatesResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates',
@@ -133,6 +135,7 @@ export const patchCandidatesCandidateId = <ThrowOnError extends boolean = false>
  * A paginated list of CandidateAssessments for a specific Candidate.
  */
 export const getCandidatesCandidateIdCandidateAssessments = <ThrowOnError extends boolean = false>(options: Options<GetCandidatesCandidateIdCandidateAssessmentsData, ThrowOnError>) => (options.client ?? client).get<GetCandidatesCandidateIdCandidateAssessmentsResponses, GetCandidatesCandidateIdCandidateAssessmentsErrors, ThrowOnError>({
+    querySerializer: { parameters: { page: { array: { explode: false } } } },
     responseTransformer: getCandidatesCandidateIdCandidateAssessmentsResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidates/{candidateId}/candidate-assessments',
@@ -183,13 +186,37 @@ export const postCandidateAssessmentsCandidateAssessmentIdActions = <ThrowOnErro
 });
 
 /**
- * Details of CandidateAssessment Scores.
+ * List Answer responses for a CandidateAssessment
  *
- * A ScoreSet for a specific CandidateAssessment.
+ * List of Answer responses to this CandidateAssessment
  */
-export const getCandidateAssessmentsCandidateAssessmentIdScoreSets = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, ThrowOnError>({
+export const getCandidateAssessmentsCandidateAssessmentIdAnswers = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, ThrowOnError>({
+    querySerializer: { parameters: { page: { array: { explode: false } } } },
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
-    url: '/candidate-assessments/{candidateAssessmentId}/score-sets',
+    url: '/candidate-assessments/{candidateAssessmentId}/answers',
+    ...options
+});
+
+/**
+ * List of Questions for a CandidateAssessment
+ *
+ * List of Questions in this CandidateAssessment. Each paginated group is a set of Questions grouped according to the rules for this CandidateAssessment.
+ */
+export const getCandidateAssessmentsCandidateAssessmentIdQuestions = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdQuestionsResponses, GetCandidateAssessmentsCandidateAssessmentIdQuestionsErrors, ThrowOnError>({
+    querySerializer: { parameters: { page: { array: { explode: false } } } },
+    security: [{ name: 'X-API-Key', type: 'apiKey' }],
+    url: '/candidate-assessments/{candidateAssessmentId}/questions',
+    ...options
+});
+
+/**
+ * Retrieve Question details for a CandidateAssessment
+ *
+ * Details of a Question in this CandidateAssessment
+ */
+export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, ThrowOnError>({
+    security: [{ name: 'X-API-Key', type: 'apiKey' }],
+    url: '/candidate-assessments/{candidateAssessmentId}/questions/{questionId}',
     ...options
 });
 
@@ -199,6 +226,7 @@ export const getCandidateAssessmentsCandidateAssessmentIdScoreSets = <ThrowOnErr
  * A paginated list of Reports available for a specific CandidateAssessment.
  */
 export const getCandidateAssessmentsCandidateAssessmentIdReports = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdReportsData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdReportsResponses, GetCandidateAssessmentsCandidateAssessmentIdReportsErrors, ThrowOnError>({
+    querySerializer: { parameters: { page: { array: { explode: false } } } },
     responseTransformer: getCandidateAssessmentsCandidateAssessmentIdReportsResponseTransformer,
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
     url: '/candidate-assessments/{candidateAssessmentId}/reports',
@@ -217,23 +245,12 @@ export const getCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportI
 });
 
 /**
- * Retrieve Question details for a CandidateAssessment
+ * Details of CandidateAssessment Scores.
  *
- * Details of a Question in this CandidateAssessment
+ * A ScoreSet for a specific CandidateAssessment.
  */
-export const getCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionId = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdResponses, GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdErrors, ThrowOnError>({
+export const getCandidateAssessmentsCandidateAssessmentIdScoreSets = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdScoreSetsResponses, GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors, ThrowOnError>({
     security: [{ name: 'X-API-Key', type: 'apiKey' }],
-    url: '/candidate-assessments/{candidateAssessmentId}/questions/{questionId}',
-    ...options
-});
-
-/**
- * List Answer responses for a CandidateAssessment
- *
- * List of Answer responses to this CandidateAssessment
- */
-export const getCandidateAssessmentsCandidateAssessmentIdAnswers = <ThrowOnError extends boolean = false>(options: Options<GetCandidateAssessmentsCandidateAssessmentIdAnswersData, ThrowOnError>) => (options.client ?? client).get<GetCandidateAssessmentsCandidateAssessmentIdAnswersResponses, GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors, ThrowOnError>({
-    security: [{ name: 'X-API-Key', type: 'apiKey' }],
-    url: '/candidate-assessments/{candidateAssessmentId}/answers',
+    url: '/candidate-assessments/{candidateAssessmentId}/score-sets',
     ...options
 });

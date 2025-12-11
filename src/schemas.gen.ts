@@ -4,6 +4,7 @@ export const AnswerFreeTextSchema = {
     type: 'object',
     title: 'AnswerFreeText',
     description: 'A free-text Answer supplied by a Candidate',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -14,6 +15,7 @@ export const AnswerFreeTextSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 answer: {
                     type: 'string',
@@ -25,6 +27,7 @@ export const AnswerFreeTextSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate_assessment: {
                     $ref: '#/components/schemas/relationshipCandidateAssessment'
@@ -60,9 +63,11 @@ export const relationshipCandidateAssessmentSchema = {
     type: 'object',
     title: 'relationshipCandidateAssessment',
     description: 'CandidateAssessment relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 type: {
                     const: 'candidate-assessments',
@@ -88,9 +93,11 @@ export const relationshipQuestionSchema = {
     type: 'object',
     title: 'relationshipQuestion',
     description: 'Question relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 type: {
                     const: 'questions',
@@ -116,6 +123,7 @@ export const AnswerRelationshipAnswerOptionSchema = {
     type: 'object',
     title: 'AnswerRelationshipAnswerOption',
     description: 'An AnswerOption selected by a Candidate',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -126,6 +134,7 @@ export const AnswerRelationshipAnswerOptionSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate_assessment: {
                     $ref: '#/components/schemas/relationshipCandidateAssessment'
@@ -155,9 +164,11 @@ export const relationshipAnswerOptionSchema = {
     type: 'object',
     title: 'relationshipAnswerOption',
     description: 'AnswerOption relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 type: {
                     const: 'answer-options',
@@ -183,6 +194,7 @@ export const CandidateSchema = {
     type: 'object',
     title: 'Candidate',
     description: 'Person who completes a CandidateAssessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId',
@@ -194,6 +206,7 @@ export const CandidateSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 first_name: {
                     type: 'string',
@@ -279,6 +292,7 @@ export const CandidateAssessmentActionSchema = {
     type: 'object',
     title: 'CandidateAssessmentAction',
     description: 'An Action resource for a CandidateAssessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -289,6 +303,7 @@ export const CandidateAssessmentActionSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 action: {
                     type: 'string',
@@ -305,12 +320,15 @@ export const CandidateAssessmentActionSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 'candidate-assessment': {
                     type: 'object',
+                    additionalProperties: false,
                     properties: {
                         data: {
                             type: 'object',
+                            additionalProperties: false,
                             properties: {
                                 type: {
                                     const: 'candidate-assessments',
@@ -347,6 +365,7 @@ export const ErrorSchema = {
     type: 'object',
     title: 'Error',
     description: 'Standard error object in a response.',
+    additionalProperties: false,
     properties: {
         title: {
             type: 'string',
@@ -390,6 +409,7 @@ export const metaCollectionPaginationSchema = {
     type: 'object',
     title: 'metaCollectionPagination',
     description: 'Standard pagination object in a meta response object.',
+    additionalProperties: false,
     properties: {
         resource_count: {
             type: 'integer',
@@ -422,6 +442,7 @@ export const linksCollectionPaginationSchema = {
     type: 'object',
     title: 'linksCollectionPagination',
     description: 'Object in a Response that provides pagination Links',
+    additionalProperties: false,
     properties: {
         first: {
             type: 'string',
@@ -461,6 +482,7 @@ export const AssessmentSchema = {
     type: 'object',
     title: 'Assessment',
     description: 'Test template from which a CandidateAssessment is created.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -471,6 +493,7 @@ export const AssessmentSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 type: {
                     type: 'string',
@@ -562,6 +585,7 @@ export const CandidateAssessmentSchema = {
     type: 'object',
     title: 'CandidateAssessment',
     description: 'An Assessment assigned to a Candidate.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -572,6 +596,7 @@ export const CandidateAssessmentSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 url: {
                     type: 'string',
@@ -619,6 +644,7 @@ export const CandidateAssessmentSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate: {
                     $ref: '#/components/schemas/relationshipCandidate'
@@ -630,6 +656,7 @@ export const CandidateAssessmentSchema = {
         },
         links: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 current_question: {
                     type: 'string',
@@ -651,9 +678,11 @@ export const relationshipCandidateSchema = {
     type: 'object',
     title: 'relationshipCandidate',
     description: 'Candidate relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 type: {
                     const: 'candidates',
@@ -679,9 +708,11 @@ export const relationshipAssessmentSchema = {
     type: 'object',
     title: 'relationshipAssessment',
     description: 'Assessment relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 type: {
                     const: 'assessments',
@@ -707,6 +738,7 @@ export const ScoreSetSchema = {
     type: 'object',
     title: 'ScoreSet',
     description: 'A set of scores for a CandidateAssessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -718,6 +750,7 @@ export const ScoreSetSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 behavioural_scores: {
                     type: 'array',
@@ -725,6 +758,7 @@ export const ScoreSetSchema = {
                     readOnly: true,
                     items: {
                         type: 'object',
+                        additionalProperties: false,
                         properties: {
                             name: {
                                 type: 'string',
@@ -758,6 +792,7 @@ export const ScoreSetSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate_assessments: {
                     $ref: '#/components/schemas/relationshipCandidateAssessment'
@@ -776,6 +811,7 @@ export const ReportSchema = {
     type: 'object',
     title: 'Report',
     description: 'Easy-to-read results of an Assessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -786,6 +822,7 @@ export const ReportSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 title: {
                     type: 'string',
@@ -833,6 +870,7 @@ export const QuestionSchema = {
     type: 'object',
     title: 'Question',
     description: 'An item on an Assessment that offers one or more AnswerOptions',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -853,6 +891,10 @@ export const QuestionSchema = {
                     $ref: '#/components/schemas/QuestionAttributesColourPath'
                 }
             ]
+        },
+        relationships: {
+            type: 'object',
+            additionalProperties: false
         }
     },
     required: [
@@ -871,6 +913,7 @@ export const QuestionAttributesBasicSchema = {
         },
         {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 text: {
                     type: 'string',
@@ -908,6 +951,7 @@ export const QuestionAttributesCoreSchema = {
     type: 'object',
     title: 'QuestionAttributesCore',
     description: 'A set of attributes shared by all Questions',
+    additionalProperties: false,
     properties: {
         question_type: {
             type: 'string',
@@ -1049,6 +1093,7 @@ export const QuestionAttributesNumberPathSchema = {
         },
         {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 start_num: {
                     type: 'integer',
@@ -1070,6 +1115,7 @@ export const QuestionAttributesNumberPathSchema = {
                     maxItems: 25,
                     items: {
                         type: 'object',
+                        additionalProperties: false,
                         properties: {
                             step_num: {
                                 type: 'integer',
@@ -1084,6 +1130,7 @@ export const QuestionAttributesNumberPathSchema = {
                                 maxItems: 10,
                                 items: {
                                     type: 'object',
+                                    additionalProperties: false,
                                     properties: {
                                         option_label: {
                                             type: 'string',
@@ -1144,6 +1191,7 @@ export const QuestionAttributesColourPathSchema = {
         },
         {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 grid_width: {
                     type: 'integer',
@@ -1175,6 +1223,7 @@ export const linksCurrentQuestionSchema = {
     type: 'object',
     title: 'linksCurrentQuestion',
     description: 'Links to related questions for traversing the assessment',
+    additionalProperties: false,
     properties: {
         first: {
             type: 'string',
@@ -1209,6 +1258,7 @@ export const AnswerOptionSchema = {
     type: 'object',
     title: 'AnswerOption',
     description: 'A possible answer/response to a Question',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1219,6 +1269,7 @@ export const AnswerOptionSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 text: {
                     type: 'string',
@@ -1237,6 +1288,7 @@ export const AnswerOptionSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 question: {
                     $ref: '#/components/schemas/relationshipQuestion'
@@ -1255,6 +1307,7 @@ export const AnswerFreeTextWritableSchema = {
     type: 'object',
     title: 'AnswerFreeText',
     description: 'A free-text Answer supplied by a Candidate',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1265,6 +1318,7 @@ export const AnswerFreeTextWritableSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 answer: {
                     type: 'string',
@@ -1276,6 +1330,7 @@ export const AnswerFreeTextWritableSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate_assessment: {
                     $ref: '#/components/schemas/relationshipCandidateAssessmentWritable'
@@ -1302,9 +1357,11 @@ export const relationshipCandidateAssessmentWritableSchema = {
     type: 'object',
     title: 'relationshipCandidateAssessment',
     description: 'CandidateAssessment relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 id: {
                     $ref: '#/components/schemas/resourceId'
@@ -1324,9 +1381,11 @@ export const relationshipQuestionWritableSchema = {
     type: 'object',
     title: 'relationshipQuestion',
     description: 'Question relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 id: {
                     $ref: '#/components/schemas/resourceId'
@@ -1346,6 +1405,7 @@ export const AnswerRelationshipAnswerOptionWritableSchema = {
     type: 'object',
     title: 'AnswerRelationshipAnswerOption',
     description: 'An AnswerOption selected by a Candidate',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1356,6 +1416,7 @@ export const AnswerRelationshipAnswerOptionWritableSchema = {
         },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate_assessment: {
                     $ref: '#/components/schemas/relationshipCandidateAssessmentWritable'
@@ -1385,9 +1446,11 @@ export const relationshipAnswerOptionWritableSchema = {
     type: 'object',
     title: 'relationshipAnswerOption',
     description: 'AnswerOption relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 id: {
                     $ref: '#/components/schemas/resourceId'
@@ -1407,6 +1470,7 @@ export const CandidateWritableSchema = {
     type: 'object',
     title: 'Candidate',
     description: 'Person who completes a CandidateAssessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId',
@@ -1418,6 +1482,7 @@ export const CandidateWritableSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 first_name: {
                     type: 'string',
@@ -1486,6 +1551,7 @@ export const AssessmentWritableSchema = {
     type: 'object',
     title: 'Assessment',
     description: 'Test template from which a CandidateAssessment is created.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1496,6 +1562,7 @@ export const AssessmentWritableSchema = {
         },
         attributes: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 language: {
                     $ref: '#/components/schemas/Language'
@@ -1522,6 +1589,7 @@ export const CandidateAssessmentWritableSchema = {
     type: 'object',
     title: 'CandidateAssessment',
     description: 'An Assessment assigned to a Candidate.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1530,8 +1598,13 @@ export const CandidateAssessmentWritableSchema = {
             const: 'candidate-assessments',
             default: 'candidate-assessments'
         },
+        attributes: {
+            type: 'object',
+            additionalProperties: false
+        },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate: {
                     $ref: '#/components/schemas/relationshipCandidateWritable'
@@ -1540,11 +1613,16 @@ export const CandidateAssessmentWritableSchema = {
                     $ref: '#/components/schemas/relationshipAssessmentWritable'
                 }
             }
+        },
+        links: {
+            type: 'object',
+            additionalProperties: false
         }
     },
     required: [
         'id',
-        'type'
+        'type',
+        'attributes'
     ]
 } as const;
 
@@ -1552,9 +1630,11 @@ export const relationshipCandidateWritableSchema = {
     type: 'object',
     title: 'relationshipCandidate',
     description: 'Candidate relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 id: {
                     $ref: '#/components/schemas/resourceId'
@@ -1574,9 +1654,11 @@ export const relationshipAssessmentWritableSchema = {
     type: 'object',
     title: 'relationshipAssessment',
     description: 'Assessment relationship object',
+    additionalProperties: false,
     properties: {
         data: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 id: {
                     $ref: '#/components/schemas/resourceId'
@@ -1596,12 +1678,18 @@ export const ScoreSetWritableSchema = {
     type: 'object',
     title: 'ScoreSet',
     description: 'A set of scores for a CandidateAssessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
         },
+        attributes: {
+            type: 'object',
+            additionalProperties: false
+        },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 candidate_assessments: {
                     $ref: '#/components/schemas/relationshipCandidateAssessmentWritable'
@@ -1610,7 +1698,8 @@ export const ScoreSetWritableSchema = {
         }
     },
     required: [
-        'id'
+        'id',
+        'attributes'
     ]
 } as const;
 
@@ -1618,6 +1707,7 @@ export const ReportWritableSchema = {
     type: 'object',
     title: 'Report',
     description: 'Easy-to-read results of an Assessment.',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1625,11 +1715,16 @@ export const ReportWritableSchema = {
         type: {
             const: 'reports',
             default: 'reports'
+        },
+        attributes: {
+            type: 'object',
+            additionalProperties: false
         }
     },
     required: [
         'id',
-        'type'
+        'type',
+        'attributes'
     ]
 } as const;
 
@@ -1637,6 +1732,7 @@ export const QuestionWritableSchema = {
     type: 'object',
     title: 'Question',
     description: 'An item on an Assessment that offers one or more AnswerOptions',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1657,6 +1753,10 @@ export const QuestionWritableSchema = {
                     $ref: '#/components/schemas/QuestionAttributesColourPathWritable'
                 }
             ]
+        },
+        relationships: {
+            type: 'object',
+            additionalProperties: false
         }
     },
     required: [
@@ -1672,6 +1772,10 @@ export const QuestionAttributesBasicWritableSchema = {
     allOf: [
         {
             $ref: '#/components/schemas/QuestionAttributesCoreWritable'
+        },
+        {
+            type: 'object',
+            additionalProperties: false
         }
     ]
 } as const;
@@ -1680,6 +1784,7 @@ export const QuestionAttributesCoreWritableSchema = {
     type: 'object',
     title: 'QuestionAttributesCore',
     description: 'A set of attributes shared by all Questions',
+    additionalProperties: false,
     properties: {
         language: {
             $ref: '#/components/schemas/Language'
@@ -1788,6 +1893,7 @@ export const QuestionAttributesNumberPathWritableSchema = {
         },
         {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 steps: {
                     type: 'array',
@@ -1795,11 +1901,16 @@ export const QuestionAttributesNumberPathWritableSchema = {
                     maxItems: 25,
                     items: {
                         type: 'object',
+                        additionalProperties: false,
                         properties: {
                             step_options: {
                                 type: 'array',
                                 minItems: 1,
-                                maxItems: 10
+                                maxItems: 10,
+                                items: {
+                                    type: 'object',
+                                    additionalProperties: false
+                                }
                             }
                         },
                         required: [
@@ -1821,6 +1932,10 @@ export const QuestionAttributesColourPathWritableSchema = {
     allOf: [
         {
             $ref: '#/components/schemas/QuestionAttributesCoreWritable'
+        },
+        {
+            type: 'object',
+            additionalProperties: false
         }
     ]
 } as const;
@@ -1829,6 +1944,7 @@ export const AnswerOptionWritableSchema = {
     type: 'object',
     title: 'AnswerOption',
     description: 'A possible answer/response to a Question',
+    additionalProperties: false,
     properties: {
         id: {
             $ref: '#/components/schemas/resourceId'
@@ -1837,8 +1953,13 @@ export const AnswerOptionWritableSchema = {
             const: 'answer-options',
             default: 'answer-options'
         },
+        attributes: {
+            type: 'object',
+            additionalProperties: false
+        },
         relationships: {
             type: 'object',
+            additionalProperties: false,
             properties: {
                 question: {
                     $ref: '#/components/schemas/relationshipQuestionWritable'
@@ -1848,6 +1969,7 @@ export const AnswerOptionWritableSchema = {
     },
     required: [
         'id',
-        'type'
+        'type',
+        'attributes'
     ]
 } as const;
