@@ -43,10 +43,31 @@ export const AnswerFreeTextSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes',
         'relationships'
+    ],
+    examples: [
+        {
+            type: 'answers',
+            attributes: {
+                answer: '[{"step_num":1,"step_option":{"option_label":"+4","option_operand":"4","option_operator":"ADD"}},{"step_num":2,"step_option":{"option_label":"x2","option_operand":"2","option_operator":"MULTIPLY"}}]'
+            },
+            relationships: {
+                candidate_assessment: {
+                    data: {
+                        type: 'candidate-assessments',
+                        id: '497f6eca-6276-4993-bfeb-53cbbbba6f08'
+                    }
+                },
+                question: {
+                    data: {
+                        type: 'questions',
+                        id: '497f6eca-6276-4993-bfeb-53cbbbba6f08'
+                    }
+                }
+            }
+        }
     ]
 } as const;
 
@@ -154,7 +175,6 @@ export const AnswerRelationshipAnswerOptionSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'relationships'
     ]
@@ -270,7 +290,6 @@ export const CandidateSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes'
     ],
@@ -323,30 +342,7 @@ export const CandidateAssessmentActionSchema = {
             additionalProperties: false,
             properties: {
                 'candidate-assessment': {
-                    type: 'object',
-                    additionalProperties: false,
-                    properties: {
-                        data: {
-                            type: 'object',
-                            additionalProperties: false,
-                            properties: {
-                                type: {
-                                    const: 'candidate-assessments',
-                                    default: 'candidate-assessments'
-                                },
-                                id: {
-                                    $ref: '#/components/schemas/resourceId'
-                                }
-                            },
-                            required: [
-                                'type',
-                                'id'
-                            ]
-                        }
-                    },
-                    required: [
-                        'data'
-                    ]
+                    $ref: '#/components/schemas/relationshipCandidateAssessment'
                 }
             },
             required: [
@@ -441,7 +437,7 @@ export const metaCollectionPaginationSchema = {
 export const linksCollectionPaginationSchema = {
     type: 'object',
     title: 'linksCollectionPagination',
-    description: 'Object in a Response that provides pagination Links',
+    description: 'Object in a response that provides pagination Links',
     additionalProperties: false,
     properties: {
         first: {
@@ -668,7 +664,6 @@ export const CandidateAssessmentSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes'
     ]
@@ -794,7 +789,7 @@ export const ScoreSetSchema = {
             type: 'object',
             additionalProperties: false,
             properties: {
-                candidate_assessments: {
+                'candidate-assessments': {
                     $ref: '#/components/schemas/relationshipCandidateAssessment'
                 }
             }
@@ -891,10 +886,6 @@ export const QuestionSchema = {
                     $ref: '#/components/schemas/QuestionAttributesColourPath'
                 }
             ]
-        },
-        relationships: {
-            type: 'object',
-            additionalProperties: false
         }
     },
     required: [
@@ -906,7 +897,7 @@ export const QuestionSchema = {
 
 export const QuestionAttributesBasicSchema = {
     title: 'QuestionAttributesBasic',
-    description: 'A set of attributes used in basic questions',
+    description: 'A set of attributes used in a basic Question',
     allOf: [
         {
             $ref: '#/components/schemas/QuestionAttributesCore'
@@ -1222,7 +1213,7 @@ export const QuestionAttributesColourPathSchema = {
 export const linksCurrentQuestionSchema = {
     type: 'object',
     title: 'linksCurrentQuestion',
-    description: 'Links to related questions for traversing the assessment',
+    description: 'Links to related Questions for traversing the Assessment',
     additionalProperties: false,
     properties: {
         first: {
@@ -1346,10 +1337,31 @@ export const AnswerFreeTextWritableSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes',
         'relationships'
+    ],
+    examples: [
+        {
+            type: 'answers',
+            attributes: {
+                answer: '[{"step_num":1,"step_option":{"option_label":"+4","option_operand":"4","option_operator":"ADD"}},{"step_num":2,"step_option":{"option_label":"x2","option_operand":"2","option_operator":"MULTIPLY"}}]'
+            },
+            relationships: {
+                candidate_assessment: {
+                    data: {
+                        type: 'candidate-assessments',
+                        id: '497f6eca-6276-4993-bfeb-53cbbbba6f08'
+                    }
+                },
+                question: {
+                    data: {
+                        type: 'questions',
+                        id: '497f6eca-6276-4993-bfeb-53cbbbba6f08'
+                    }
+                }
+            }
+        }
     ]
 } as const;
 
@@ -1436,7 +1448,6 @@ export const AnswerRelationshipAnswerOptionWritableSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'relationships'
     ]
@@ -1529,7 +1540,6 @@ export const CandidateWritableSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes'
     ],
@@ -1544,6 +1554,56 @@ export const CandidateWritableSchema = {
             updated_at: '2018-01-01T12:00:00.000Z',
             external_reference: 'Q705'
         }
+    ]
+} as const;
+
+export const CandidateAssessmentActionWritableSchema = {
+    type: 'object',
+    title: 'CandidateAssessmentAction',
+    description: 'An Action resource for a CandidateAssessment.',
+    additionalProperties: false,
+    properties: {
+        id: {
+            $ref: '#/components/schemas/resourceId'
+        },
+        type: {
+            const: 'candidate-assessment-actions',
+            default: 'candidate-assessment-actions'
+        },
+        attributes: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+                action: {
+                    type: 'string',
+                    enum: [
+                        'start',
+                        'finish'
+                    ],
+                    default: 'start'
+                }
+            },
+            required: [
+                'action'
+            ]
+        },
+        relationships: {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+                'candidate-assessment': {
+                    $ref: '#/components/schemas/relationshipCandidateAssessmentWritable'
+                }
+            },
+            required: [
+                'candidate-assessment'
+            ]
+        }
+    },
+    required: [
+        'type',
+        'attributes',
+        'relationships'
     ]
 } as const;
 
@@ -1620,7 +1680,6 @@ export const CandidateAssessmentWritableSchema = {
         }
     },
     required: [
-        'id',
         'type',
         'attributes'
     ]
@@ -1691,7 +1750,7 @@ export const ScoreSetWritableSchema = {
             type: 'object',
             additionalProperties: false,
             properties: {
-                candidate_assessments: {
+                'candidate-assessments': {
                     $ref: '#/components/schemas/relationshipCandidateAssessmentWritable'
                 }
             }
@@ -1753,10 +1812,6 @@ export const QuestionWritableSchema = {
                     $ref: '#/components/schemas/QuestionAttributesColourPathWritable'
                 }
             ]
-        },
-        relationships: {
-            type: 'object',
-            additionalProperties: false
         }
     },
     required: [
@@ -1768,7 +1823,7 @@ export const QuestionWritableSchema = {
 
 export const QuestionAttributesBasicWritableSchema = {
     title: 'QuestionAttributesBasic',
-    description: 'A set of attributes used in basic questions',
+    description: 'A set of attributes used in a basic Question',
     allOf: [
         {
             $ref: '#/components/schemas/QuestionAttributesCoreWritable'

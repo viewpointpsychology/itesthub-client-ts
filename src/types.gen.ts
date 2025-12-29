@@ -10,7 +10,7 @@ export type ClientOptions = {
  * A free-text Answer supplied by a Candidate
  */
 export type AnswerFreeText = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'answers';
     attributes: {
         answer?: string;
@@ -58,7 +58,7 @@ export type RelationshipQuestion = {
  * An AnswerOption selected by a Candidate
  */
 export type AnswerRelationshipAnswerOption = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'answers';
     relationships: {
         candidate_assessment: RelationshipCandidateAssessment;
@@ -88,7 +88,7 @@ export type Candidate = {
     /**
      * Unique identifier for the given candidate.
      */
-    id: ResourceId;
+    id?: ResourceId;
     type: 'candidates';
     attributes: {
         first_name: string;
@@ -126,12 +126,7 @@ export type CandidateAssessmentAction = {
         action: 'start' | 'finish';
     };
     relationships: {
-        'candidate-assessment': {
-            data: {
-                type: 'candidate-assessments';
-                id: ResourceId;
-            };
-        };
+        'candidate-assessment': RelationshipCandidateAssessment;
     };
 };
 
@@ -140,7 +135,7 @@ export type CandidateAssessmentAction = {
  *
  * Standard error object in a response.
  */
-export type _Error = {
+export type Error = {
     readonly title: string;
     readonly detail: string;
     readonly code: string;
@@ -160,7 +155,7 @@ export type MetaCollectionPagination = {
 /**
  * linksCollectionPagination
  *
- * Object in a Response that provides pagination Links
+ * Object in a response that provides pagination Links
  */
 export type LinksCollectionPagination = {
     /**
@@ -225,7 +220,7 @@ export type Language = typeof Language[keyof typeof Language];
  * An Assessment assigned to a Candidate.
  */
 export type CandidateAssessment = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'candidate-assessments';
     attributes: {
         readonly url: string;
@@ -283,7 +278,7 @@ export type ScoreSet = {
         readonly overall_score: number;
     };
     relationships?: {
-        candidate_assessments?: RelationshipCandidateAssessment;
+        'candidate-assessments'?: RelationshipCandidateAssessment;
     };
 };
 
@@ -312,15 +307,12 @@ export type Question = {
     id: ResourceId;
     type: 'questions';
     attributes: QuestionAttributesBasic | QuestionAttributesNumberPath | QuestionAttributesColourPath;
-    relationships?: {
-        [key: string]: never;
-    };
 };
 
 /**
  * QuestionAttributesBasic
  *
- * A set of attributes used in basic questions
+ * A set of attributes used in a basic Question
  */
 export type QuestionAttributesBasic = QuestionAttributesCore & {
     readonly text?: string;
@@ -375,7 +367,7 @@ export type QuestionAttributesColourPath = QuestionAttributesCore & {
 /**
  * linksCurrentQuestion
  *
- * Links to related questions for traversing the assessment
+ * Links to related Questions for traversing the Assessment
  */
 export type LinksCurrentQuestion = {
     /**
@@ -415,7 +407,7 @@ export type AnswerOption = {
  * A free-text Answer supplied by a Candidate
  */
 export type AnswerFreeTextWritable = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'answers';
     attributes: {
         answer?: string;
@@ -454,7 +446,7 @@ export type RelationshipQuestionWritable = {
  * An AnswerOption selected by a Candidate
  */
 export type AnswerRelationshipAnswerOptionWritable = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'answers';
     relationships: {
         candidate_assessment: RelationshipCandidateAssessmentWritable;
@@ -483,7 +475,7 @@ export type CandidateWritable = {
     /**
      * Unique identifier for the given candidate.
      */
-    id: ResourceId;
+    id?: ResourceId;
     type: 'candidates';
     attributes: {
         first_name: string;
@@ -498,6 +490,22 @@ export type CandidateWritable = {
          */
         external_reference?: string | null;
         gdpr_approval_date?: Date;
+    };
+};
+
+/**
+ * CandidateAssessmentAction
+ *
+ * An Action resource for a CandidateAssessment.
+ */
+export type CandidateAssessmentActionWritable = {
+    id?: ResourceId;
+    type: 'candidate-assessment-actions';
+    attributes: {
+        action: 'start' | 'finish';
+    };
+    relationships: {
+        'candidate-assessment': RelationshipCandidateAssessmentWritable;
     };
 };
 
@@ -521,7 +529,7 @@ export type AssessmentWritable = {
  * An Assessment assigned to a Candidate.
  */
 export type CandidateAssessmentWritable = {
-    id: ResourceId;
+    id?: ResourceId;
     type: 'candidate-assessments';
     attributes: {
         [key: string]: never;
@@ -568,7 +576,7 @@ export type ScoreSetWritable = {
         [key: string]: never;
     };
     relationships?: {
-        candidate_assessments?: RelationshipCandidateAssessmentWritable;
+        'candidate-assessments'?: RelationshipCandidateAssessmentWritable;
     };
 };
 
@@ -594,15 +602,12 @@ export type QuestionWritable = {
     id: ResourceId;
     type: 'questions';
     attributes: QuestionAttributesBasicWritable | QuestionAttributesNumberPathWritable | QuestionAttributesColourPathWritable;
-    relationships?: {
-        [key: string]: never;
-    };
 };
 
 /**
  * QuestionAttributesBasic
  *
- * A set of attributes used in basic questions
+ * A set of attributes used in a basic Question
  */
 export type QuestionAttributesBasicWritable = QuestionAttributesCoreWritable & {};
 
@@ -740,7 +745,7 @@ export type CandidateAssessmentUpdate = {
 };
 
 export type CandidateAssessmentActionCreate = {
-    data: CandidateAssessmentAction;
+    data: CandidateAssessmentActionWritable;
 };
 
 export type PostAnswersData = {
@@ -755,44 +760,44 @@ export type PostAnswersErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -826,50 +831,50 @@ export type PatchAnswersAnswerIdErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -903,44 +908,44 @@ export type GetAssessmentsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -978,50 +983,50 @@ export type GetAssessmentsAssessmentIdErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1055,44 +1060,44 @@ export type GetCandidatesErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1125,44 +1130,44 @@ export type PostCandidatesErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1196,50 +1201,50 @@ export type GetCandidatesCandidateIdErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1273,50 +1278,50 @@ export type PatchCandidatesCandidateIdErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1355,44 +1360,44 @@ export type GetCandidatesCandidateIdCandidateAssessmentsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1425,44 +1430,44 @@ export type PostCandidateAssessmentsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1496,50 +1501,50 @@ export type GetCandidateAssessmentsCandidateAssessmentIdErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1573,50 +1578,50 @@ export type PostCandidateAssessmentsCandidateAssessmentIdActionsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1651,44 +1656,44 @@ export type GetCandidateAssessmentsCandidateAssessmentIdAnswersErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1731,44 +1736,44 @@ export type GetCandidateAssessmentsCandidateAssessmentIdQuestionsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1810,50 +1815,50 @@ export type GetCandidateAssessmentsCandidateAssessmentIdQuestionsQuestionIdError
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1893,44 +1898,44 @@ export type GetCandidateAssessmentsCandidateAssessmentIdReportsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -1972,50 +1977,50 @@ export type GetCandidateAssessmentsCandidateAssessmentIdReportsCandidateReportId
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
@@ -2047,50 +2052,50 @@ export type GetCandidateAssessmentsCandidateAssessmentIdScoreSetsErrors = {
      * Bad Request.
      */
     400: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 401 (Unauthorized) status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
      */
     401: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 403 (Forbidden) status code indicates that the server understood the request but refuses to authorize it. A server that wishes to make public why the request has been forbidden can describe that reason in the response payload (if any).
      * Use for valid credentials that lack access to a resource.
      */
     403: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
      */
     404: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Not Acceptable.
      */
     406: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Unsupported Media Type.
      */
     415: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Too Many Requests.
      */
     429: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
     /**
      * Internal Server Error.
      */
     500: {
-        errors: Array<_Error>;
+        errors: Array<Error>;
     };
 };
 
