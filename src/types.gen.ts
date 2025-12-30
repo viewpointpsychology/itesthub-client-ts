@@ -189,7 +189,7 @@ export type Assessment = {
         readonly title: string;
         language?: Language;
         readonly description?: string | null;
-        readonly 'time-limit'?: string | null;
+        readonly time_limit?: string | null;
         readonly introduction?: string | null;
         conclusion?: string | null;
     };

@@ -518,7 +518,7 @@ export const AssessmentSchema = {
                     maxLength: 190,
                     readOnly: true
                 },
-                'time-limit': {
+                time_limit: {
                     type: [
                         'string',
                         'null'
